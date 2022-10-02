@@ -1,6 +1,6 @@
 ﻿namespace SudoSoup
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -77,6 +77,7 @@
             this.SudokuBtn.TabIndex = 0;
             this.SudokuBtn.Text = "Sudoku";
             this.SudokuBtn.UseVisualStyleBackColor = true;
+            this.SudokuBtn.Click += new System.EventHandler(this.SudokuBtn_Click);
             // 
             // WordSearchBtn
             // 
@@ -89,15 +90,16 @@
             this.WordSearchBtn.TabIndex = 1;
             this.WordSearchBtn.Text = "Word Search";
             this.WordSearchBtn.UseVisualStyleBackColor = true;
+            this.WordSearchBtn.Click += new System.EventHandler(this.WordSearchBtn_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.WindowTable);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Sudo Soup";
             this.WindowTable.ResumeLayout(false);
             this.ButtonsTable.ResumeLayout(false);
             this.ResumeLayout(false);
