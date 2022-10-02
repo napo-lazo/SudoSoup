@@ -1,0 +1,10 @@
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\SudoSoup.exe.config
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\SudoSoup.exe
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\SudoSoup.pdb
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csprojAssemblyReference.cache
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.Form1.resources
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.Properties.Resources.resources
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csproj.GenerateResource.cache
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csproj.CoreCompileInputs.cache
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.exe
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.pdb
