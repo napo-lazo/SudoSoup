@@ -18,16 +18,16 @@ namespace SudoSoup
 
         private void SudokuBtn_Click(object sender, EventArgs e) {
             this.Hide();
-            GameForm gameForm = new GameForm();
+            GameForm gameForm = new GameForm(new SudokuHelper());
             gameForm.Text = ((Button)sender).Text;
             gameForm.Show();
         }
 
         private void WordSearchBtn_Click(object sender, EventArgs e) {
-            this.Hide();
-            GameForm gameForm = new GameForm();
-            gameForm.Text = ((Button)sender).Text;
-            gameForm.Show();
+            //this.Hide();
+            //GameForm gameForm = new GameForm();
+            //gameForm.Text = ((Button)sender).Text;
+            //gameForm.Show();
         }
     }
 }
