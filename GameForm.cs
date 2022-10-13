@@ -53,6 +53,9 @@ namespace SudoSoup
                 for (int j = 0; j < this.game.gameGrid.GetLength(1); j++)
                 {
                     TextBox textBox = new TextBox();
+                    textBox.TextAlign = HorizontalAlignment.Center;
+                    //textBox.BackColor = this.GameGrid.BackColor;
+                    textBox.Dock = DockStyle.Fill;
                     textBox.Text = this.game.gameGrid[i, j];
 
                     this.GameGrid.Controls.Add(textBox, j, i);
