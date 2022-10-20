@@ -8,6 +8,10 @@ namespace SudoSoup
 {
     public class SudokuHelper : Game
     {
+
+        private string[,] solutionGrid;
+        private int qtyToRemove = 51;
+
         public SudokuHelper()
         {
             GenerateSudokuGrid();
@@ -25,6 +29,56 @@ namespace SudoSoup
             }
 
             IterateGrid(0, 0);
+            //TODO: copy to solution grid
+            RemoveNumbersFromGrid();
+        }
+
+        private void RemoveNumbersFromGrid()
+        {
+            Random random = new Random();
+            int remainingQtyToRemove = this.qtyToRemove;
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    int minVal = remainingQtyToRemove / ((3 - i) * 3 - j);
+                    int maxVal = 9;
+
+                    if (remainingQtyToRemove < 8)
+                        maxVal = remainingQtyToRemove + 1;
+
+                    int numbersToRemove = random.Next(minVal, maxVal);
+                    RemoveNumbersFromInnerBox(i, j, numbersToRemove);
+                    remainingQtyToRemove -= numbersToRemove;
+                }
+            }
+
+            Console.WriteLine(remainingQtyToRemove);
+        }
+
+        private void RemoveNumbersFromInnerBox(int row, int column, int numbersToRemove)
+        {
+            Random random = new Random();
+            List<int> validCells = new List<int>(); 
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    validCells.Add(27 * row + 3 * column + 9 * i + j);
+                }
+            }
+
+            for (int i = 0; i < numbersToRemove; i++)
+            {
+                int indexToRemove = random.Next(0, validCells.Count);
+                int gridIndex = validCells[indexToRemove];
+                validCells.RemoveAt(indexToRemove);
+
+                this.gameGrid[gridIndex / 9, gridIndex % 9] = "";
+
+            }
         }
 
         private bool IterateGrid(int row, int column)
