@@ -1,4 +1,7 @@
-﻿using System;
+﻿using QuestPDF.Fluent;
+using SudoSoup.DataSource;
+using SudoSoup.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +22,15 @@ namespace SudoSoup
             this.game = game;
             ResizeGameGrid();
             PopulateGameGrid();
+            GeneratePDF();
+        }
+
+        private void GeneratePDF()
+        {
+            string path = "Sudoku.pdf";
+            SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuHelper);
+            SudokuPDF document = new SudokuPDF(sudokuModel);
+            document.GeneratePdf(path);
         }
 
         private void ResizeGameGrid()
