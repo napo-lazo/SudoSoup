@@ -13,7 +13,8 @@ namespace SudoSoup.DataSource
         {
             return new SudokuModel
             {
-                puzzle = sudoku.gameGrid
+                puzzle = sudoku.gameGrid,
+                solution = sudoku.solutionGrid
             };
         }
     }

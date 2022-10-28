@@ -9,11 +9,12 @@ namespace SudoSoup
     public class SudokuHelper : Game
     {
 
-        private string[,] solutionGrid;
+        public string[,] solutionGrid;
         private int qtyToRemove = 51;
 
         public SudokuHelper()
         {
+            solutionGrid = new string[9, 9];
             GenerateSudokuGrid();
         }
 
@@ -29,7 +30,7 @@ namespace SudoSoup
             }
 
             IterateGrid(0, 0);
-            //TODO: copy to solution grid
+            Array.Copy(this.gameGrid, this.solutionGrid, 81);
             RemoveNumbersFromGrid();
         }
 

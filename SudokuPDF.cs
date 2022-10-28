@@ -16,6 +16,8 @@ namespace SudoSoup
 
         private SudokuModel model;
         private Tuple<int, int> currentCell;
+        private string title;
+        private string[,] grid;
 
         public SudokuPDF(SudokuModel model)
         {
@@ -26,15 +28,31 @@ namespace SudoSoup
 
         public void Compose(IDocumentContainer container)
         {
-            container.Page(page =>
-            {
-                page.Margin(50);
+            container
+                .Page(page =>
+                {
+                    this.title = "Sudoku";
+                    this.grid = model.puzzle;
 
-                page.Header().Element(ComposeHeader);
-                page.Content().Element(ComposeContent);
-                page.Footer().Element(ComposeFooter);
+                    page.Margin(50);
 
-            });
+                    page.Header().Element(ComposeHeader);
+                    page.Content().Element(ComposeContent);
+                    page.Footer().Element(ComposeFooter);
+
+                })
+                .Page(page =>
+                {
+                    this.title = "Solution";
+                    this.grid = model.solution;
+
+                    page.Margin(50);
+
+                    page.Header().Element(ComposeHeader);
+                    page.Content().Element(ComposeContent);
+                    page.Footer().Element(ComposeFooter);
+
+                });
         }
 
         private void ComposeHeader(IContainer container)
@@ -45,7 +63,7 @@ namespace SudoSoup
                 
                 inlined.AlignCenter();
 
-                inlined.Item().Text("Sudoku").Style(style);
+                inlined.Item().Text(this.title).Style(style);
             });
         } 
 
@@ -88,7 +106,7 @@ namespace SudoSoup
                         for (int j = 0; j < 9; j++)
                         {
                             this.currentCell = new Tuple<int, int>(i, j);
-                            table.Cell().Row((uint)i + 1).Column((uint)j + 1).Element(CellStyle).Text(this.model.puzzle[i, j]).Style(style);
+                            table.Cell().Row((uint)i + 1).Column((uint)j + 1).Element(CellStyle).Text(this.grid[i, j]).Style(style);
                         }
                     }
                 });
