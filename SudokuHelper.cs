@@ -20,13 +20,11 @@ namespace SudoSoup
 
         private void GenerateSudokuGrid()
         {
-            Random random = new Random();
-
             //Fills the diagonals inner boxes of the Sudoku grid
             for (int i = 0; i < 3; i++)
             {
                 int index = i * 3;
-                FillDiagonalBox(random, index);
+                FillDiagonalBox(index);
             }
 
             IterateGrid(0, 0);
@@ -36,7 +34,6 @@ namespace SudoSoup
 
         private void RemoveNumbersFromGrid()
         {
-            Random random = new Random();
             int remainingQtyToRemove = this.qtyToRemove;
 
             for (int i = 0; i < 3; i++)
@@ -49,7 +46,7 @@ namespace SudoSoup
                     if (remainingQtyToRemove < 8)
                         maxVal = remainingQtyToRemove + 1;
 
-                    int numbersToRemove = random.Next(minVal, maxVal);
+                    int numbersToRemove = this.random.Next(minVal, maxVal);
                     RemoveNumbersFromInnerBox(i, j, numbersToRemove);
                     remainingQtyToRemove -= numbersToRemove;
                 }
@@ -60,7 +57,6 @@ namespace SudoSoup
 
         private void RemoveNumbersFromInnerBox(int row, int column, int numbersToRemove)
         {
-            Random random = new Random();
             List<int> validCells = new List<int>(); 
 
             for (int i = 0; i < 3; i++)
@@ -73,7 +69,7 @@ namespace SudoSoup
 
             for (int i = 0; i < numbersToRemove; i++)
             {
-                int indexToRemove = random.Next(0, validCells.Count);
+                int indexToRemove = this.random.Next(0, validCells.Count);
                 int gridIndex = validCells[indexToRemove];
                 validCells.RemoveAt(indexToRemove);
 
@@ -152,7 +148,7 @@ namespace SudoSoup
             return true;
         }
 
-        private void FillDiagonalBox(Random random, int startingIndex)
+        private void FillDiagonalBox(int startingIndex)
         {
             List<string> availableNumbers = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             int endingIndex = startingIndex + 3;
@@ -161,7 +157,7 @@ namespace SudoSoup
             {
                 for (int j = startingIndex; j < endingIndex; j++)
                 {
-                    int index = random.Next(0, availableNumbers.Count);
+                    int index = this.random.Next(0, availableNumbers.Count);
                     this.gameGrid[i, j] = availableNumbers[index];
                     availableNumbers.RemoveAt(index);
                 }

@@ -9,15 +9,21 @@ namespace SudoSoup
     public class Game
     {
         public string[,] gameGrid;
+        public int randomSeed;
+        protected Random random;
 
         protected Game()
         {
             gameGrid = new string[9,9];
+            randomSeed = Environment.TickCount;
+            random = new Random(randomSeed);
         }
 
         protected Game(int gridSize)
         {
             gameGrid = new string[gridSize, gridSize];
+            randomSeed = Environment.TickCount;
+            random = new Random(randomSeed);
         }
 
         public void PrintGridToConsole()

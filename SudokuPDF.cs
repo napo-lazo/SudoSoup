@@ -73,8 +73,9 @@ namespace SudoSoup
             {
                 TextStyle style = TextStyle.Default;
 
-                inlined.AlignRight();
+                inlined.AlignJustify();
 
+                inlined.Item().Text($"Seed: {this.model.randomSeed}").Style(style);
                 inlined.Item().Text("Sudoku generated with SudoSoup").Style(style);
             });
         }

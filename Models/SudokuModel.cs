@@ -10,5 +10,6 @@ namespace SudoSoup.Models
     {
         public string[,] puzzle { get; set; }
         public string[,] solution { get; set; }
+        public string randomSeed { get; set; }
     }
 }

@@ -14,7 +14,8 @@ namespace SudoSoup.DataSource
             return new SudokuModel
             {
                 puzzle = sudoku.gameGrid,
-                solution = sudoku.solutionGrid
+                solution = sudoku.solutionGrid,
+                randomSeed = sudoku.randomSeed.ToString()
             };
         }
     }
