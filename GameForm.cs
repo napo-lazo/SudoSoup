@@ -1,4 +1,5 @@
-﻿using QuestPDF.Fluent;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using QuestPDF.Fluent;
 using SudoSoup.DataSource;
 using SudoSoup.Models;
 using System;
@@ -22,15 +23,24 @@ namespace SudoSoup
             this.game = game;
             ResizeGameGrid();
             PopulateGameGrid();
-            GeneratePDF();
         }
 
         private void GeneratePDF()
         {
-            string path = "Sudoku.pdf";
-            SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuHelper);
-            SudokuPDF document = new SudokuPDF(sudokuModel);
-            document.GeneratePdf(path);
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                dialog.Title = "Save Sudoku";
+                dialog.FileName = "Sudoku";
+                dialog.DefaultExt = "pdf";
+                dialog.Filter = "PDF files (*.pdf)|*.pdf";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuHelper);
+                    SudokuPDF document = new SudokuPDF(sudokuModel);
+                    document.GeneratePdf(dialog.FileName);
+                }   
+            }
         }
 
         private void ResizeGameGrid()
@@ -77,6 +87,11 @@ namespace SudoSoup
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e) {
             Application.Exit();
+        }
+
+        private void saveAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneratePDF();
         }
     }
 }
