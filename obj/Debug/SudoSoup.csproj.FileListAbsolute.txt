@@ -34,6 +34,4 @@ C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\System.Numerics.Vectors.x
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csproj.CopyComplete
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.dll
-C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

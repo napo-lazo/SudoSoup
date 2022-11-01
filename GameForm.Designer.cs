@@ -30,6 +30,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GameContainer.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +83,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.saveAsPDFToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -93,6 +95,13 @@
             this.saveAsPDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsPDFToolStripMenuItem.Text = "Save as PDF";
             this.saveAsPDFToolStripMenuItem.Click += new System.EventHandler(this.saveAsPDFToolStripMenuItem_Click);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Text = "New ";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // GameForm
             // 
@@ -119,5 +128,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsPDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     }
 }

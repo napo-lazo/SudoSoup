@@ -42,9 +42,6 @@
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft-WindowsAPICodePack-Core.1.1.4\lib\net472\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft-WindowsAPICodePack-Shell.1.1.4\lib\net472\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="QuestPDF, Version=2022.9.1.0, Culture=neutral, processorArchitecture=MSIL">

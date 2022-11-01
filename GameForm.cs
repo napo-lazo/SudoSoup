@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using QuestPDF.Fluent;
+﻿using QuestPDF.Fluent;
 using SudoSoup.DataSource;
 using SudoSoup.Models;
 using System;
@@ -64,23 +63,30 @@ namespace SudoSoup
                 if (this.GameGrid.ColumnStyles.Count > i)
                     this.GameGrid.ColumnStyles[i].Width = newSize;
                 else
-                    this.GameGrid.ColumnStyles.Add(new RowStyle(SizeType.Percent, newSize));
+                    this.GameGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, newSize));
             }
         }
 
         private void PopulateGameGrid()
         {
+            int globalIndex = 0;
+
             for (int i = 0; i < this.game.gameGrid.GetLength(0); i++)
             {
                 for (int j = 0; j < this.game.gameGrid.GetLength(1); j++)
                 {
-                    TextBox textBox = new TextBox();
-                    textBox.TextAlign = HorizontalAlignment.Center;
-                    //textBox.BackColor = this.GameGrid.BackColor;
-                    textBox.Dock = DockStyle.Fill;
-                    textBox.Text = this.game.gameGrid[i, j];
+                    if (this.GameGrid.Controls.Count <= globalIndex)
+                    {
+                        TextBox textBox = new TextBox();
+                        textBox.TextAlign = HorizontalAlignment.Center;
+                        //textBox.BackColor = this.GameGrid.BackColor;
+                        textBox.Dock = DockStyle.Fill;
 
-                    this.GameGrid.Controls.Add(textBox, j, i);
+                        this.GameGrid.Controls.Add(textBox, j, i);
+                    }
+
+                    this.GameGrid.Controls[globalIndex].Text = this.game.gameGrid[i, j];
+                    globalIndex++;
                 }
             }
         }
@@ -92,6 +98,13 @@ namespace SudoSoup
         private void saveAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneratePDF();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.game = new SudokuHelper();
+            ResizeGameGrid();
+            PopulateGameGrid();
         }
     }
 }
