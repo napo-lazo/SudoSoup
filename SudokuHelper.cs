@@ -15,10 +15,9 @@ namespace SudoSoup
         public SudokuHelper()
         {
             solutionGrid = new string[9, 9];
-            GenerateSudokuGrid();
         }
 
-        private void GenerateSudokuGrid()
+        public override void GenerateGridValues()
         {
             //Fills the diagonals inner boxes of the Sudoku grid
             for (int i = 0; i < 3; i++)

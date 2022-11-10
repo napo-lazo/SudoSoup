@@ -15,15 +15,26 @@ namespace SudoSoup
         protected Game()
         {
             gameGrid = new string[9,9];
-            randomSeed = Environment.TickCount;
-            random = new Random(randomSeed);
         }
 
         protected Game(int gridSize)
         {
             gameGrid = new string[gridSize, gridSize];
-            randomSeed = Environment.TickCount;
-            random = new Random(randomSeed);
+        }
+
+        public void InitializeRandomizer(int? seed)
+        {
+            if (seed != null)
+                this.randomSeed = (int)seed;
+            else
+                this.randomSeed = Environment.TickCount;
+
+            this.random = new Random(this.randomSeed);
+        }
+
+        public virtual void GenerateGridValues()
+        {
+            throw new Exception("Method was not implemented");
         }
 
         public void PrintGridToConsole()

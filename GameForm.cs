@@ -19,9 +19,21 @@ namespace SudoSoup
 
         public GameForm(Game game) {
             InitializeComponent();
+            this.Hide();
+
             this.game = game;
-            ResizeGameGrid();
-            PopulateGameGrid();
+
+            using (SudokuConfiguration config = new SudokuConfiguration())
+            {
+                config.ShowDialog();
+                if (config.DialogResult == DialogResult.OK)
+                {
+                    this.game.InitializeRandomizer(config.seedValue);
+                    this.game.GenerateGridValues();
+                    ResizeGameGrid();
+                    PopulateGameGrid();
+                }
+            }
         }
 
         private void GeneratePDF()
