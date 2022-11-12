@@ -37,6 +37,11 @@ namespace SudoSoup
             throw new Exception("Method was not implemented");
         }
 
+        public virtual void ClearGridValues()
+        {
+            throw new Exception("Method was not implemented");
+        }
+
         public void PrintGridToConsole()
         {
             StringBuilder sb = new StringBuilder();

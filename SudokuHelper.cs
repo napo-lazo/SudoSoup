@@ -17,6 +17,12 @@ namespace SudoSoup
             solutionGrid = new string[9, 9];
         }
 
+        public override void ClearGridValues()
+        {
+            this.gameGrid = new string[9, 9];
+            this.solutionGrid = new string[9, 9];
+        }
+
         public override void GenerateGridValues()
         {
             //Fills the diagonals inner boxes of the Sudoku grid

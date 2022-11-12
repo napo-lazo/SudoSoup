@@ -1,4 +1,5 @@
 ﻿using QuestPDF.Fluent;
+using SudoSoup.Controllers;
 using SudoSoup.DataSource;
 using SudoSoup.Models;
 using System;
@@ -81,24 +82,16 @@ namespace SudoSoup
 
         private void PopulateGameGrid()
         {
-            int globalIndex = 0;
+            if (this.GameGrid.Controls.Count != 0)
+                this.GameGrid.Controls.Clear();
 
             for (int i = 0; i < this.game.gameGrid.GetLength(0); i++)
             {
                 for (int j = 0; j < this.game.gameGrid.GetLength(1); j++)
                 {
-                    if (this.GameGrid.Controls.Count <= globalIndex)
-                    {
-                        TextBox textBox = new TextBox();
-                        textBox.TextAlign = HorizontalAlignment.Center;
-                        //textBox.BackColor = this.GameGrid.BackColor;
-                        textBox.Dock = DockStyle.Fill;
+                    string textValue = this.game.gameGrid[i, j];
 
-                        this.GameGrid.Controls.Add(textBox, j, i);
-                    }
-
-                    this.GameGrid.Controls[globalIndex].Text = this.game.gameGrid[i, j];
-                    globalIndex++;
+                    this.GameGrid.Controls.Add(new SudokuTextBox(textValue), j, i);
                 }
             }
         }
@@ -114,9 +107,14 @@ namespace SudoSoup
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.game = new SudokuHelper();
+            this.SuspendLayout();
+
+            this.game.ClearGridValues();
+            this.game.GenerateGridValues();
             ResizeGameGrid();
             PopulateGameGrid();
+
+            this.ResumeLayout();
         }
     }
 }

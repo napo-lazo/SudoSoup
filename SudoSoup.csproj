@@ -82,6 +82,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\SudokuTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controllers\SudokuTextBox.Designer.cs">
+      <DependentUpon>SudokuTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataSource\SudokuDataSource.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameForm.cs">
@@ -107,6 +113,9 @@
     </Compile>
     <Compile Include="SudokuHelper.cs" />
     <Compile Include="SudokuPDF.cs" />
+    <EmbeddedResource Include="Controllers\SudokuTextBox.resx">
+      <DependentUpon>SudokuTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
