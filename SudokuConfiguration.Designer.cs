@@ -90,9 +90,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.SeedTextBox, 3);
             this.SeedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SeedTextBox.Location = new System.Drawing.Point(163, 205);
+            this.SeedTextBox.MaxLength = 10;
             this.SeedTextBox.Name = "SeedTextBox";
             this.SeedTextBox.Size = new System.Drawing.Size(474, 35);
             this.SeedTextBox.TabIndex = 2;
+            this.SeedTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SeedTextBox_KeyPress);
             // 
             // GenerateButton
             // 
