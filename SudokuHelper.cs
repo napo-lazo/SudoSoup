@@ -11,10 +11,46 @@ namespace SudoSoup
 
         public string[,] solutionGrid;
         private int qtyToRemove = 51;
+        private int filledCells = 0;
+        private HashSet<int> invalidCellIndexes = new HashSet<int>();
 
         public SudokuHelper()
         {
             solutionGrid = new string[9, 9];
+            eventMgr.OnFilledSudokuCell += UpdateSudokuState;
+        }
+
+        private void UpdateSudokuState(int cellIndex, string cellValue)
+        {
+            //Only increment the cell counter when initializing the game form
+            if (filledCells <  81 - qtyToRemove) 
+            {
+                this.filledCells++;
+                return;
+            }
+
+            int row = cellIndex / 9;
+            int column = cellIndex % 9;
+
+            if (!string.IsNullOrWhiteSpace(cellValue))
+            {
+                if (!CheckNumberAvailability(row, column, cellValue))
+                    this.invalidCellIndexes.Add(cellIndex);
+
+                this.filledCells++;
+            }
+            else
+            {
+                if (invalidCellIndexes.Contains(cellIndex))
+                    invalidCellIndexes.Remove(cellIndex);
+                
+                filledCells--;
+            }
+
+            this.gameGrid[row, column] = cellValue;
+
+            if (filledCells == 81 && invalidCellIndexes.Count == 0)
+                eventMgr.GameCompleted();
         }
 
         public override void ClearGridValues()

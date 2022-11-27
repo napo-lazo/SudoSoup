@@ -11,6 +11,7 @@ namespace SudoSoup
         public string[,] gameGrid;
         public int randomSeed;
         protected Random random;
+        protected EventManager eventMgr = EventManager.GetEventManager();
 
         protected Game()
         {

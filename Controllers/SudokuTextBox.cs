@@ -31,13 +31,17 @@ namespace SudoSoup.Controllers
 
         private void SudokuTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+            TextBox currentTextBox = ((TextBox)sender);
+
+            EventManager.GetEventManager().FilledSudokuCell(currentTextBox.TabIndex, currentTextBox.Text);
         }
 
         private void SudokuTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
                 e.Handled = true;
+            }
         }
     }
 }

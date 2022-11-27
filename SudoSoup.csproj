@@ -89,6 +89,7 @@
       <DependentUpon>SudokuTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSource\SudokuDataSource.cs" />
+    <Compile Include="EventManager.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>

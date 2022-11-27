@@ -36,3 +36,4 @@ C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodeP
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.SudokuConfiguration.resources
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.Controllers.SudokuTextBox.resources
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csprojAssemblyReference.cache

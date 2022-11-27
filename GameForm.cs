@@ -16,12 +16,14 @@ namespace SudoSoup
 {
     public partial class GameForm : Form
     {
-        Game game;
+        private Game game;
+        private EventManager eventMgr = EventManager.GetEventManager();
 
         public GameForm(Game game) {
             InitializeComponent();
             this.Hide();
 
+            eventMgr.OnGameCompleted += DisplayCompletedMessage;
             this.game = game;
 
             using (SudokuConfiguration config = new SudokuConfiguration())
@@ -94,6 +96,15 @@ namespace SudoSoup
                     this.GameGrid.Controls.Add(new SudokuTextBox(textValue), j, i);
                 }
             }
+        }
+
+        private void DisplayCompletedMessage()
+        {
+            string message = "You successfully completed the Sudoku";
+            string caption = "Puzzle completed";
+
+            MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            Application.Exit();
         }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e) {
