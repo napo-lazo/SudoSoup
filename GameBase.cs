@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace SudoSoup
 {
-    public class Game
+    public class GameBase
     {
         public string[,] gameGrid;
         public int randomSeed;
         protected Random random;
         protected EventManager eventMgr = EventManager.GetEventManager();
 
-        protected Game()
+        protected GameBase()
         {
             gameGrid = new string[9,9];
         }
 
-        protected Game(int gridSize)
+        protected GameBase(int gridSize)
         {
             gameGrid = new string[gridSize, gridSize];
         }

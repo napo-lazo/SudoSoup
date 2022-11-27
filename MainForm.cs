@@ -18,7 +18,7 @@ namespace SudoSoup
 
         private void SudokuBtn_Click(object sender, EventArgs e) {
             this.Hide();
-            GameForm gameForm = new GameForm(new SudokuHelper());
+            GameForm gameForm = new GameForm(new SudokuGame());
             gameForm.Text = ((Button)sender).Text;
             gameForm.Show();
         }

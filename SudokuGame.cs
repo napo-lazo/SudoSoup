@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudoSoup
 {
-    public class SudokuHelper : Game
+    public class SudokuGame : GameBase
     {
 
         public string[,] solutionGrid;
@@ -14,7 +14,7 @@ namespace SudoSoup
         private int filledCells = 0;
         private HashSet<int> invalidCellIndexes = new HashSet<int>();
 
-        public SudokuHelper()
+        public SudokuGame()
         {
             solutionGrid = new string[9, 9];
             eventMgr.OnFilledSudokuCell += UpdateSudokuState;

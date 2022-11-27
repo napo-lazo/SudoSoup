@@ -9,7 +9,7 @@ namespace SudoSoup.DataSource
 {
     public static class SudokuDataSource
     {
-        public static SudokuModel GetSudokuModel(SudokuHelper sudoku)
+        public static SudokuModel GetSudokuModel(SudokuGame sudoku)
         {
             return new SudokuModel
             {

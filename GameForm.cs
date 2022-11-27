@@ -16,10 +16,10 @@ namespace SudoSoup
 {
     public partial class GameForm : Form
     {
-        private Game game;
+        private GameBase game;
         private EventManager eventMgr = EventManager.GetEventManager();
 
-        public GameForm(Game game) {
+        public GameForm(GameBase game) {
             InitializeComponent();
             this.Hide();
 
@@ -50,7 +50,7 @@ namespace SudoSoup
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuHelper);
+                    SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuGame);
                     SudokuPDF document = new SudokuPDF(sudokuModel);
                     document.GeneratePdf(dialog.FileName);
                 }   
