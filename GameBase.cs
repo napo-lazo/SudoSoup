@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudoSoup
 {
-    public class GameBase
+    public abstract class GameBase
     {
         public string[,] gameGrid;
         public int randomSeed;
@@ -33,15 +33,9 @@ namespace SudoSoup
             this.random = new Random(this.randomSeed);
         }
 
-        public virtual void GenerateGridValues()
-        {
-            throw new Exception("Method was not implemented");
-        }
+        public abstract void GenerateGridValues();
 
-        public virtual void ClearGridValues()
-        {
-            throw new Exception("Method was not implemented");
-        }
+        public abstract void ClearGridValues();
 
         public void PrintGridToConsole()
         {

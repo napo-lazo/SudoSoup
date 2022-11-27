@@ -90,7 +90,7 @@
     </Compile>
     <Compile Include="DataSource\SudokuDataSource.cs" />
     <Compile Include="EventManager.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="GameBase.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,7 +112,7 @@
     <Compile Include="SudokuConfiguration.Designer.cs">
       <DependentUpon>SudokuConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="SudokuHelper.cs" />
+    <Compile Include="SudokuGame.cs" />
     <Compile Include="SudokuPDF.cs" />
     <EmbeddedResource Include="Controllers\SudokuTextBox.resx">
       <DependentUpon>SudokuTextBox.cs</DependentUpon>

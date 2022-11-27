@@ -8,7 +8,6 @@ namespace SudoSoup
 {
     public class SudokuGame : GameBase
     {
-
         public string[,] solutionGrid;
         private int qtyToRemove = 51;
         private int filledCells = 0;
