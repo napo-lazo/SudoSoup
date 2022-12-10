@@ -34,6 +34,7 @@ C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\System.Runtime.CompilerSe
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csproj.CopyComplete
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.SudokuConfiguration.resources
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.Controllers.SudokuTextBox.resources
 C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.csprojAssemblyReference.cache
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.ConfigurationForms.SudokuConfiguration.resources
+C:\Users\napo\source\repos\SudoSoup\SudoSoup\obj\Debug\SudoSoup.ConfigurationForms.WordSoupConfiguration.resources

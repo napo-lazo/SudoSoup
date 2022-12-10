@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SudoSoup
 {
@@ -12,6 +13,7 @@ namespace SudoSoup
         public int randomSeed;
         protected Random random;
         protected EventManager eventMgr = EventManager.GetEventManager();
+        public Form config;
 
         protected GameBase()
         {
@@ -23,7 +25,7 @@ namespace SudoSoup
             gameGrid = new string[gridSize, gridSize];
         }
 
-        public void InitializeRandomizer(int? seed)
+        protected void InitializeRandomizer(int? seed)
         {
             if (seed != null)
                 this.randomSeed = (int)seed;
@@ -36,6 +38,10 @@ namespace SudoSoup
         public abstract void GenerateGridValues();
 
         public abstract void ClearGridValues();
+
+        public abstract void SetConfiguration();
+
+        public abstract Control GetGridCellControl(string cellValue);
 
         public void PrintGridToConsole()
         {

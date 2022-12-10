@@ -1,4 +1,5 @@
-﻿using SudoSoup.Models;
+﻿using SudoSoup.Games;
+using SudoSoup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

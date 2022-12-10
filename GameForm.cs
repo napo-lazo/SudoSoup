@@ -1,6 +1,6 @@
 ﻿using QuestPDF.Fluent;
-using SudoSoup.Controllers;
 using SudoSoup.DataSource;
+using SudoSoup.Games;
 using SudoSoup.Models;
 using System;
 using System.Collections.Generic;
@@ -26,12 +26,12 @@ namespace SudoSoup
             eventMgr.OnGameCompleted += DisplayCompletedMessage;
             this.game = game;
 
-            using (SudokuConfiguration config = new SudokuConfiguration())
+            using (Form config = this.game.config)
             {
                 config.ShowDialog();
                 if (config.DialogResult == DialogResult.OK)
                 {
-                    this.game.InitializeRandomizer(config.seedValue);
+                    this.game.SetConfiguration();
                     this.game.GenerateGridValues();
                     ResizeGameGrid();
                     PopulateGameGrid();
@@ -93,7 +93,7 @@ namespace SudoSoup
                 {
                     string textValue = this.game.gameGrid[i, j];
 
-                    this.GameGrid.Controls.Add(new SudokuTextBox(textValue), j, i);
+                    this.GameGrid.Controls.Add(this.game.GetGridCellControl(textValue), j, i);
                 }
             }
         }

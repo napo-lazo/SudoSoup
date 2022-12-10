@@ -1,4 +1,4 @@
-﻿namespace SudoSoup
+﻿namespace SudoSoup.ConfigurationForms
 {
     partial class SudokuConfiguration
     {

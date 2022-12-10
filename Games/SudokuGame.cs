@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using SudoSoup.ConfigurationForms;
+using SudoSoup.Controllers;
 
-namespace SudoSoup
+namespace SudoSoup.Games
 {
     public class SudokuGame : GameBase
     {
@@ -17,6 +20,7 @@ namespace SudoSoup
         {
             solutionGrid = new string[9, 9];
             eventMgr.OnFilledSudokuCell += UpdateSudokuState;
+            this.config = new SudokuConfiguration();
         }
 
         private void UpdateSudokuState(int cellIndex, string cellValue)
@@ -50,6 +54,16 @@ namespace SudoSoup
 
             if (filledCells == 81 && invalidCellIndexes.Count == 0)
                 eventMgr.GameCompleted();
+        }
+
+        public override void SetConfiguration()
+        {
+            InitializeRandomizer(((SudokuConfiguration)config).seedValue);
+        }
+
+        public override Control GetGridCellControl(string cellValue)
+        {
+            return new SudokuTextBox(cellValue);
         }
 
         public override void ClearGridValues()

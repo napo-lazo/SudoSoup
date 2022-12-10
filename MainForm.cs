@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SudoSoup.Games;
 
 namespace SudoSoup
 {
@@ -24,10 +25,10 @@ namespace SudoSoup
         }
 
         private void WordSearchBtn_Click(object sender, EventArgs e) {
-            //this.Hide();
-            //GameForm gameForm = new GameForm();
-            //gameForm.Text = ((Button)sender).Text;
-            //gameForm.Show();
+            this.Hide();
+            GameForm gameForm = new GameForm(new WordSoupGame());
+            gameForm.Text = ((Button)sender).Text;
+            gameForm.Show();
         }
     }
 }
