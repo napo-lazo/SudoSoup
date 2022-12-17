@@ -11,6 +11,9 @@ namespace SudoSoup.Games
 {
     public class WordSoupGame : GameBase
     {
+
+        private string[] wordList;
+
         public WordSoupGame()
         {
             this.config = new WordSoupConfiguration();
@@ -33,7 +36,8 @@ namespace SudoSoup.Games
 
         public override void SetConfiguration()
         {
-            Console.WriteLine("Placeholder for Wordsoup SetConfiguration implementation");
+            InitializeRandomizer(((WordSoupConfiguration)config).seedValue);
+            this.wordList = ((WordSoupConfiguration)config).wordList;
         }
     }
 }
