@@ -27,7 +27,7 @@ namespace SudoSoup.ConfigurationForms
             if (!string.IsNullOrWhiteSpace(seedText))
                 this.seedValue = Convert.ToInt32(seedText);
 
-            this.wordList = WordsTextBox.Lines;
+            this.wordList = WordsTextBox.Lines.Where(word => !string.IsNullOrWhiteSpace(word)).ToArray();
 
             this.DialogResult = DialogResult.OK;
             this.Close();
