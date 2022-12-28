@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SudoSoup
+namespace SudoSoup.PDFs
 {
     public class SudokuPDF : IDocument
     {

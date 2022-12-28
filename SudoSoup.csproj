@@ -95,6 +95,7 @@
       <DependentUpon>SudokuTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSource\SudokuDataSource.cs" />
+    <Compile Include="DataSource\WordsoupDataSource.cs" />
     <Compile Include="EventManager.cs" />
     <Compile Include="GameBase.cs" />
     <Compile Include="GameForm.cs">
@@ -111,6 +112,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\SudokuModel.cs" />
+    <Compile Include="Models\WordsoupModel.cs" />
+    <Compile Include="PDFs\WordsoupPDF.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConfigurationForms\SudokuConfiguration.cs">
@@ -120,7 +123,7 @@
       <DependentUpon>SudokuConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Games\SudokuGame.cs" />
-    <Compile Include="SudokuPDF.cs" />
+    <Compile Include="PDFs\SudokuPDF.cs" />
     <EmbeddedResource Include="ConfigurationForms\WordSoupConfiguration.resx">
       <DependentUpon>WordSoupConfiguration.cs</DependentUpon>
     </EmbeddedResource>

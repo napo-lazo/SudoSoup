@@ -43,16 +43,14 @@ namespace SudoSoup
         {
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
-                dialog.Title = "Save Sudoku";
-                dialog.FileName = "Sudoku";
+                dialog.Title = $"Save {this.game.gameTitle}";
+                dialog.FileName = this.game.gameTitle;
                 dialog.DefaultExt = "pdf";
                 dialog.Filter = "PDF files (*.pdf)|*.pdf";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this.game as SudokuGame);
-                    SudokuPDF document = new SudokuPDF(sudokuModel);
-                    document.GeneratePdf(dialog.FileName);
+                    this.game.GeneratePDF(dialog.FileName);
                 }   
             }
         }

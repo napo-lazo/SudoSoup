@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuestPDF.Fluent;
 using SudoSoup.ConfigurationForms;
 using SudoSoup.Controllers;
+using SudoSoup.DataSource;
+using SudoSoup.Models;
+using SudoSoup.PDFs;
 
 namespace SudoSoup.Games
 {
@@ -18,7 +22,8 @@ namespace SudoSoup.Games
 
         public SudokuGame()
         {
-            solutionGrid = new string[9, 9];
+            this.gameTitle = "Sudoku";
+            this.solutionGrid = new string[9, 9];
             eventMgr.OnFilledSudokuCell += UpdateSudokuState;
             this.config = new SudokuConfiguration();
         }
@@ -70,6 +75,13 @@ namespace SudoSoup.Games
         {
             this.gameGrid = new string[9, 9];
             this.solutionGrid = new string[9, 9];
+        }
+
+        public override void GeneratePDF(string filename)
+        {
+            SudokuModel sudokuModel = SudokuDataSource.GetSudokuModel(this);
+            SudokuPDF document = new SudokuPDF(sudokuModel);
+            document.GeneratePdf(filename);
         }
 
         public override void GenerateGridValues()

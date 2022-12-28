@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuestPDF.Fluent;
 using SudoSoup.ConfigurationForms;
 using SudoSoup.Controllers;
+using SudoSoup.DataSource;
+using SudoSoup.Models;
+using SudoSoup.PDFs;
 
 namespace SudoSoup.Games
 {
@@ -27,10 +31,11 @@ namespace SudoSoup.Games
             }
         }
 
-        private string[] wordList;
+        public string[] wordList;
 
         public WordSoupGame()
         {
+            this.gameTitle = "Wordsoup";
             this.config = new WordSoupConfiguration();
         }
 
@@ -39,7 +44,13 @@ namespace SudoSoup.Games
             throw new NotImplementedException();
         }
 
-        //TODO: Fill missing spaces with random letters
+        public override void GeneratePDF(string filename)
+        {
+            WordsoupModel wordsoupModel = WordsoupDataSource.GetWordsoupModel(this);
+            WordsoupPDF document = new WordsoupPDF(wordsoupModel);
+            document.GeneratePdf(filename);
+        }
+
         public override void GenerateGridValues()
         {
             IterateWordList(0);

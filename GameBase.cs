@@ -9,6 +9,7 @@ namespace SudoSoup
 {
     public abstract class GameBase
     {
+        public string gameTitle;
         public string[,] gameGrid;
         public int randomSeed;
         protected Random random;
@@ -42,6 +43,8 @@ namespace SudoSoup
         public abstract void SetConfiguration();
 
         public abstract Control GetGridCellControl(string cellValue);
+
+        public abstract void GeneratePDF(string filename);
 
         public void PrintGridToConsole()
         {
