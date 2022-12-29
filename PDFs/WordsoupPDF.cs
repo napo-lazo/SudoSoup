@@ -37,6 +37,17 @@ namespace SudoSoup.PDFs
                     page.Header().Element(ComposeHeader);
                     page.Content().Element(ComposeContent);
                     page.Footer().Element(ComposeFooter);
+                })
+                .Page(page =>
+                {
+                    this.title = "Solution";
+                    this.grid = this.model.puzzleSolution;
+
+                    page.Margin(50);
+
+                    page.Header().Element(ComposeHeader);
+                    page.Content().Element(ComposeContent);
+                    page.Footer().Element(ComposeFooter);
                 });
         }
 

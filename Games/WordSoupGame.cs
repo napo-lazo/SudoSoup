@@ -32,10 +32,12 @@ namespace SudoSoup.Games
         }
 
         public string[] wordList;
+        public string[,] solutionGrid;
 
         public WordSoupGame()
         {
             this.gameTitle = "Wordsoup";
+            this.solutionGrid = new string[9, 9];
             this.config = new WordSoupConfiguration();
         }
 
@@ -54,6 +56,8 @@ namespace SudoSoup.Games
         public override void GenerateGridValues()
         {
             IterateWordList(0);
+
+            Array.Copy(this.gameGrid, this.solutionGrid, 81);
 
             Dictionary<char, HashSet<char>> lettersToCheck = new Dictionary<char, HashSet<char>>();
 

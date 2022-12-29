@@ -16,7 +16,8 @@ namespace SudoSoup.DataSource
             {
                 puzzle = wordSoup.gameGrid,
                 randomSeed = wordSoup.randomSeed.ToString(),
-                wordList = wordSoup.wordList
+                wordList = wordSoup.wordList,
+                puzzleSolution = wordSoup.solutionGrid
             };
         }
     }
