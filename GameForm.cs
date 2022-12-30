@@ -18,13 +18,15 @@ namespace SudoSoup
     {
         private GameBase game;
         private EventManager eventMgr = EventManager.GetEventManager();
+        private Form mainForm;
 
-        public GameForm(GameBase game) {
+        public GameForm(Form mainForm, GameBase game) {
             InitializeComponent();
             this.Hide();
 
             eventMgr.OnGameCompleted += DisplayCompletedMessage;
             this.game = game;
+            this.mainForm = mainForm;
 
             using (Form config = this.game.config)
             {
@@ -35,6 +37,11 @@ namespace SudoSoup
                     this.game.GenerateGridValues();
                     ResizeGameGrid();
                     PopulateGameGrid();
+                }
+                else
+                {
+                    this.mainForm.Show();
+                    this.Close();
                 }
             }
         }
@@ -102,11 +109,12 @@ namespace SudoSoup
             string caption = "Puzzle completed";
 
             MessageBox.Show(message, caption, MessageBoxButtons.OK);
-            Application.Exit();
+            this.mainForm.Show();
+            this.Close();
         }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e) {
-            Application.Exit();
+            this.mainForm.Show();
         }
 
         private void saveAsPDFToolStripMenuItem_Click(object sender, EventArgs e)

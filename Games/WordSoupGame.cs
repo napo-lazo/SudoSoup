@@ -43,7 +43,8 @@ namespace SudoSoup.Games
 
         public override void ClearGridValues()
         {
-            throw new NotImplementedException();
+            this.gameGrid = new string[9, 9];
+            this.solutionGrid = new string[9, 9];
         }
 
         public override void GeneratePDF(string filename)
@@ -351,7 +352,9 @@ namespace SudoSoup.Games
         public override void SetConfiguration()
         {
             InitializeRandomizer(((WordSoupConfiguration)config).seedValue);
-            this.wordList = ((WordSoupConfiguration)config).wordList;
+
+            HashSet<string> uniqueWords = new HashSet<string>(((WordSoupConfiguration)config).wordList);
+            this.wordList = uniqueWords.ToArray();
         }
     }
 }
