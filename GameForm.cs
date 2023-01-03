@@ -1,4 +1,5 @@
 ﻿using QuestPDF.Fluent;
+using SudoSoup.Controllers;
 using SudoSoup.DataSource;
 using SudoSoup.Games;
 using SudoSoup.Models;
@@ -25,6 +26,8 @@ namespace SudoSoup
             this.Hide();
 
             eventMgr.OnGameCompleted += DisplayCompletedMessage;
+            eventMgr.OnUpdateCellColor += ChangeCellColor;
+            eventMgr.OnMarkCellAsUsed += MarkCellAsUsed;
             this.game = game;
             this.mainForm = mainForm;
 
@@ -40,8 +43,7 @@ namespace SudoSoup
                 }
                 else
                 {
-                    this.mainForm.Show();
-                    this.Close();
+                    this.ManualCloseForm();
                 }
             }
         }
@@ -60,6 +62,21 @@ namespace SudoSoup
                     this.game.GeneratePDF(dialog.FileName);
                 }   
             }
+        }
+
+        private void ManualCloseForm()
+        {
+            this.ClearEvents();
+            this.game.Dispose();
+            this.mainForm.Show();
+            this.Close();
+        }
+
+        private void ClearEvents()
+        {
+            eventMgr.OnGameCompleted -= DisplayCompletedMessage;
+            eventMgr.OnUpdateCellColor -= ChangeCellColor;
+            eventMgr.OnMarkCellAsUsed -= MarkCellAsUsed;
         }
 
         private void ResizeGameGrid()
@@ -105,15 +122,52 @@ namespace SudoSoup
 
         private void DisplayCompletedMessage()
         {
-            string message = "You successfully completed the Sudoku";
+            string message = $"You successfully completed the {game.gameTitle}";
             string caption = "Puzzle completed";
 
             MessageBox.Show(message, caption, MessageBoxButtons.OK);
-            this.mainForm.Show();
-            this.Close();
+            this.ManualCloseForm();
+        }
+
+        private void MarkCellAsUsed(List<int> cellIndexes)
+        {
+            for (int i = 0; i < cellIndexes.Count; i++)
+            {
+                Control control = this.GameGrid.Controls[cellIndexes[i]];
+                if (control is WordsoupLabel)
+                    ((WordsoupLabel)control).isPartOfCompletedWord = true;
+
+                if (i == 0)
+                    ChangeCellColor(cellIndexes[i], true);
+                else
+                    ChangeCellColor(cellIndexes[i], false);
+            }
+        }
+
+        private void ChangeCellColor(int cellIndex, bool toggleBold)
+        {
+            Control control = this.GameGrid.Controls[cellIndex];
+
+            if (control is WordsoupLabel) 
+            {
+                if (control.ForeColor != Color.Red || ((WordsoupLabel)control).isPartOfCompletedWord)
+                    control.ForeColor = Color.Red;
+                else
+                    control.ForeColor = Color.Black;
+
+                if (toggleBold)
+                {
+                    if (control.Font.Bold)
+                        control.Font = new Font(Label.DefaultFont, FontStyle.Regular);
+                    else
+                        control.Font = new Font(Label.DefaultFont, FontStyle.Bold);
+                }
+            }
         }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e) {
+            this.ClearEvents();
+            this.game.Dispose();
             this.mainForm.Show();
         }
 

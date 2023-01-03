@@ -88,6 +88,12 @@
     <Compile Include="ConfigurationForms\WordSoupConfiguration.Designer.cs">
       <DependentUpon>WordSoupConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\WordsoupLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\WordsoupLabel.Designer.cs">
+      <DependentUpon>WordsoupLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\SudokuTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controllers\SudokuTextBox.resx">
       <DependentUpon>SudokuTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\WordsoupLabel.resx">
+      <DependentUpon>WordsoupLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>

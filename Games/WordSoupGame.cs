@@ -33,12 +33,89 @@ namespace SudoSoup.Games
 
         public string[] wordList;
         public string[,] solutionGrid;
+        private int previouslyClickedCell = -1;
+        private List<string> missingWordsToFind;
 
         public WordSoupGame()
         {
             this.gameTitle = "Wordsoup";
             this.solutionGrid = new string[9, 9];
+            eventMgr.OnClickedWordsoupCell += UpdateWordsoupState;
             this.config = new WordSoupConfiguration();
+        }
+
+        private void UpdateWordsoupState(int cellIndex, string cellValue, bool isPartOfCompletedWord)
+        {
+            if (this.previouslyClickedCell == -1)
+            {
+                this.previouslyClickedCell = cellIndex;
+                this.eventMgr.UpdateCellColor(cellIndex, true);
+            }
+            else if (this.previouslyClickedCell != cellIndex)
+            {
+                int previousCellRow = this.previouslyClickedCell / 9;
+                int previousCellColumn = this.previouslyClickedCell % 9;
+                int cellRow = cellIndex / 9;
+                int cellColumn = cellIndex % 9;
+                int cellsToMoveX = Math.Abs(previousCellRow - cellRow);
+                int cellsToMoveY = Math.Abs(previousCellColumn - cellColumn);
+
+                //Check if the clicked cells are vertically, horiztonally or diagonally aligned
+                if (cellsToMoveX != cellsToMoveY && cellsToMoveX != 0 && cellsToMoveY != 0)
+                {
+                    this.eventMgr.UpdateCellColor(this.previouslyClickedCell, true);
+                    this.previouslyClickedCell = -1;
+                    return;
+                }
+
+                List<int> cellIndexes = new List<int>();
+                int cellsToMove = Math.Max(cellsToMoveX, cellsToMoveY);
+                int currentRow = previousCellRow;
+                int currentColumn = previousCellColumn;
+                string selectedLetters = "";
+                string reversedLetters;
+
+                for (int i = 0; i <= cellsToMove; i++)
+                {
+                    selectedLetters += this.gameGrid[currentRow, currentColumn];
+                    cellIndexes.Add(currentRow * 9 + currentColumn);
+
+                    if (currentRow < cellRow)
+                        currentRow++;
+                    else if (currentRow > cellRow)
+                        currentRow--;
+
+                    if (currentColumn < cellColumn)
+                        currentColumn++;
+                    else if (currentColumn > cellColumn)
+                        currentColumn--;
+                }
+
+                char[] charArray = selectedLetters.ToCharArray();
+                Array.Reverse(charArray);
+                reversedLetters = new string(charArray);
+
+                int normalSearch = missingWordsToFind.IndexOf(selectedLetters);
+                int reversedSearch = missingWordsToFind.IndexOf(reversedLetters);
+
+                if (normalSearch != -1)
+                {
+                    this.missingWordsToFind.RemoveAt(normalSearch);
+                    this.eventMgr.MarkCellAsUsed(cellIndexes);
+                }
+                else if (reversedSearch != -1)
+                {
+                    this.missingWordsToFind.RemoveAt(reversedSearch);
+                    this.eventMgr.MarkCellAsUsed(cellIndexes);
+                }
+                else
+                    this.eventMgr.UpdateCellColor(this.previouslyClickedCell, true);
+
+                this.previouslyClickedCell = -1;
+
+                if (missingWordsToFind.Count == 0)
+                    eventMgr.GameCompleted();
+            }
         }
 
         public override void ClearGridValues()
@@ -346,7 +423,7 @@ namespace SudoSoup.Games
 
         public override Control GetGridCellControl(string cellValue)
         {
-            return new SudokuTextBox(cellValue);
+            return new WordsoupLabel(cellValue);
         }
 
         public override void SetConfiguration()
@@ -355,6 +432,12 @@ namespace SudoSoup.Games
 
             HashSet<string> uniqueWords = new HashSet<string>(((WordSoupConfiguration)config).wordList);
             this.wordList = uniqueWords.ToArray();
+            this.missingWordsToFind = uniqueWords.ToList();
+        }
+
+        public override void Dispose()
+        {
+            eventMgr.OnClickedWordsoupCell -= UpdateWordsoupState;
         }
     }
 }

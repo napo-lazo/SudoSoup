@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace SudoSoup
 {
-    public abstract class GameBase
+    public abstract class GameBase : IDisposable
     {
         public string gameTitle;
         public string[,] gameGrid;
@@ -63,5 +63,7 @@ namespace SudoSoup
 
             Console.WriteLine(sb.ToString());
         }
+
+        public abstract void Dispose();
     }
 }

@@ -229,5 +229,10 @@ namespace SudoSoup.Games
                 }
             }
         }
+
+        public override void Dispose()
+        {
+            eventMgr.OnFilledSudokuCell -= UpdateSudokuState;
+        }
     }
 }
