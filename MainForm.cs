@@ -13,28 +13,32 @@ namespace SudoSoup
 {
     public partial class MainForm : Form
     {
+
+        private void GoToGameForm(object sender, GameBase game)
+        {
+            this.Hide();
+            GameForm gameForm = new GameForm(this, game);
+            if (!gameForm.IsDisposed)
+            {
+                gameForm.Text = ((Button)sender).Text;
+                gameForm.Show();
+            }
+        }
+
         public MainForm() {
             InitializeComponent();
         }
 
         private void SudokuBtn_Click(object sender, EventArgs e) {
-            this.Hide();
-            GameForm gameForm = new GameForm(this, new SudokuGame());
-            if (!gameForm.IsDisposed)
-            {
-                gameForm.Text = ((Button)sender).Text;
-                gameForm.Show();
-            }
+            GameBase sudoku = new SudokuGame();
+
+            this.GoToGameForm(sender, sudoku);
         }
 
         private void WordSearchBtn_Click(object sender, EventArgs e) {
-            this.Hide();
-            GameForm gameForm = new GameForm(this, new WordSoupGame());
-            if (!gameForm.IsDisposed)
-            {
-                gameForm.Text = ((Button)sender).Text;
-                gameForm.Show();
-            }
+            GameBase wordsoup = new WordSoupGame();
+
+            this.GoToGameForm(sender, wordsoup);
         }
     }
 }

@@ -19,15 +19,19 @@ namespace SudoSoup
     {
         private GameBase game;
         private EventManager eventMgr = EventManager.GetEventManager();
-        private Form mainForm;
+        private MainForm mainForm;
+        private AppendixForm appendix;
 
-        public GameForm(Form mainForm, GameBase game) {
+        public GameForm(MainForm mainForm, GameBase game) {
             InitializeComponent();
             this.Hide();
 
             eventMgr.OnGameCompleted += DisplayCompletedMessage;
             eventMgr.OnUpdateCellColor += ChangeCellColor;
             eventMgr.OnMarkCellAsUsed += MarkCellAsUsed;
+            eventMgr.OnAppendixFormClosed += ToggleAppendixFormState;
+            eventMgr.OnWordsoupWordCompleted += CrossOutWordAppendix;
+
             this.game = game;
             this.mainForm = mainForm;
 
@@ -40,12 +44,27 @@ namespace SudoSoup
                     this.game.GenerateGridValues();
                     ResizeGameGrid();
                     PopulateGameGrid();
+
+                    if (this.game is IAppendix)
+                    {
+                        this.viewToolStripMenuItem.Visible = true;
+                        this.appendix = (this.game as IAppendix).FormatAppendix();
+                        appendix.Show();
+                    }
                 }
                 else
                 {
                     this.ManualCloseForm();
                 }
             }
+        }
+
+        private void ToggleAppendixFormState()
+        {
+            if (this.appendixToolStripMenuItem.CheckState == CheckState.Checked)
+                this.appendixToolStripMenuItem.CheckState = CheckState.Unchecked;
+            else
+                this.appendixToolStripMenuItem.CheckState = CheckState.Checked;
         }
 
         private void GeneratePDF()
@@ -77,6 +96,8 @@ namespace SudoSoup
             eventMgr.OnGameCompleted -= DisplayCompletedMessage;
             eventMgr.OnUpdateCellColor -= ChangeCellColor;
             eventMgr.OnMarkCellAsUsed -= MarkCellAsUsed;
+            eventMgr.OnAppendixFormClosed -= ToggleAppendixFormState;
+            eventMgr.OnWordsoupWordCompleted -= CrossOutWordAppendix;
         }
 
         private void ResizeGameGrid()
@@ -165,9 +186,30 @@ namespace SudoSoup
             }
         }
 
+        private void CrossOutWordAppendix(string word)
+        {
+            GroupBox groupBox = (GroupBox)appendix.tableLayout.Controls[0];
+            TableLayoutPanel tableLayout = (TableLayoutPanel)groupBox.Controls[0];
+
+            foreach (Control control in tableLayout.Controls)
+            {
+                Label label = (control as Label);
+
+                if (label.Text == word)
+                {
+                    label.Font = label.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Strikeout);
+                    break;
+                }
+            }
+        }
+
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e) {
             this.ClearEvents();
             this.game.Dispose();
+
+            if (this.game is IAppendix)
+                this.appendix.Close();
+
             this.mainForm.Show();
         }
 
@@ -186,6 +228,17 @@ namespace SudoSoup
             PopulateGameGrid();
 
             this.ResumeLayout();
+        }
+
+        private void appendixToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (this.appendix.IsDisposed)
+                this.appendix = (this.game as IAppendix).FormatAppendix();
+            
+            if (((ToolStripMenuItem)sender).Checked)
+                this.appendix.Show();
+            else
+                this.appendix.Hide();
         }
     }
 }

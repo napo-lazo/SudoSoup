@@ -14,6 +14,8 @@ namespace SudoSoup
         public event Action<int, string, bool> OnClickedWordsoupCell;
         public event Action<int, bool> OnUpdateCellColor;
         public event Action<List<int>> OnMarkCellAsUsed;
+        public event Action OnAppendixFormClosed;
+        public event Action<string> OnWordsoupWordCompleted;
 
         private EventManager()
         {
@@ -51,6 +53,16 @@ namespace SudoSoup
         public void GameCompleted()
         {
             OnGameCompleted?.Invoke();
-        } 
+        }
+
+        public void AppendixFormClosed()
+        {
+            OnAppendixFormClosed?.Invoke();
+        }
+
+        public void WordsoupWordCompleted(string word)
+        {
+            OnWordsoupWordCompleted?.Invoke(word);
+        }
     }
 }

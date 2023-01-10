@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 using QuestPDF.Fluent;
 using SudoSoup.ConfigurationForms;
@@ -13,7 +14,7 @@ using SudoSoup.PDFs;
 
 namespace SudoSoup.Games
 {
-    public class WordSoupGame : GameBase
+    public class WordSoupGame : GameBase, IAppendix
     {
 
         private readonly struct ValidStartingCell
@@ -102,11 +103,13 @@ namespace SudoSoup.Games
                 {
                     this.missingWordsToFind.RemoveAt(normalSearch);
                     this.eventMgr.MarkCellAsUsed(cellIndexes);
+                    this.eventMgr.WordsoupWordCompleted(selectedLetters);
                 }
                 else if (reversedSearch != -1)
                 {
                     this.missingWordsToFind.RemoveAt(reversedSearch);
                     this.eventMgr.MarkCellAsUsed(cellIndexes);
+                    this.eventMgr.WordsoupWordCompleted(reversedLetters);
                 }
                 else
                     this.eventMgr.UpdateCellColor(this.previouslyClickedCell, true);
@@ -438,6 +441,47 @@ namespace SudoSoup.Games
         public override void Dispose()
         {
             eventMgr.OnClickedWordsoupCell -= UpdateWordsoupState;
+        }
+
+        public AppendixForm FormatAppendix()
+        {
+            AppendixForm appendix = new AppendixForm();
+
+            GroupBox groupBox = new GroupBox();
+            FlowLayoutPanel flowLayout = new FlowLayoutPanel();
+            TableLayoutPanel tableLayout = new TableLayoutPanel();
+
+            tableLayout.ColumnCount = 3;
+            tableLayout.Dock = DockStyle.Fill;
+            tableLayout.AutoSize = true;
+            tableLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            foreach (string word in this.wordList)
+            {
+                Label label = new Label();
+                label.Text = word;
+
+                if (this.missingWordsToFind.Contains(word))
+                    label.Font = new Font("Microsoft Sans Serif", 12);
+                else
+                    label.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Strikeout);
+
+                label.AutoSize = true;
+
+                tableLayout.Controls.Add(label);
+            }
+
+            flowLayout.Dock = DockStyle.Fill;
+
+            groupBox.Text = "Word List";
+            groupBox.ForeColor = Color.Black;
+            groupBox.Dock = DockStyle.Fill;
+            groupBox.AutoSize = true;
+            groupBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            groupBox.Controls.Add(tableLayout);
+
+            appendix.tableLayout.Controls.Add(groupBox);
+
+            return appendix;
         }
     }
 }

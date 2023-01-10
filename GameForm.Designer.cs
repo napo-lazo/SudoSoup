@@ -29,8 +29,10 @@
             this.GameGrid = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.appendixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GameContainer.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +75,8 @@
             // 
             this.GameContainer.SetColumnSpan(this.menuStrip1, 3);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -89,19 +92,38 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // saveAsPDFToolStripMenuItem
-            // 
-            this.saveAsPDFToolStripMenuItem.Name = "saveAsPDFToolStripMenuItem";
-            this.saveAsPDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsPDFToolStripMenuItem.Text = "Save as PDF";
-            this.saveAsPDFToolStripMenuItem.Click += new System.EventHandler(this.saveAsPDFToolStripMenuItem_Click);
-            // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newToolStripMenuItem.Text = "New ";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // saveAsPDFToolStripMenuItem
+            // 
+            this.saveAsPDFToolStripMenuItem.Name = "saveAsPDFToolStripMenuItem";
+            this.saveAsPDFToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.saveAsPDFToolStripMenuItem.Text = "Save as PDF";
+            this.saveAsPDFToolStripMenuItem.Click += new System.EventHandler(this.saveAsPDFToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.appendixToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Visible = false;
+            // 
+            // appendixToolStripMenuItem
+            // 
+            this.appendixToolStripMenuItem.Checked = true;
+            this.appendixToolStripMenuItem.CheckOnClick = true;
+            this.appendixToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.appendixToolStripMenuItem.Name = "appendixToolStripMenuItem";
+            this.appendixToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.appendixToolStripMenuItem.Text = "Appendix";
+            this.appendixToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.appendixToolStripMenuItem_CheckStateChanged);
             // 
             // GameForm
             // 
@@ -129,5 +151,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsPDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem appendixToolStripMenuItem;
     }
 }

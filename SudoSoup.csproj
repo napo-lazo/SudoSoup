@@ -82,6 +82,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppendixForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppendixForm.Designer.cs">
+      <DependentUpon>AppendixForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigurationForms\WordSoupConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,7 @@
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Games\WordSoupGame.cs" />
+    <Compile Include="IAppendix.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +137,9 @@
     </Compile>
     <Compile Include="Games\SudokuGame.cs" />
     <Compile Include="PDFs\SudokuPDF.cs" />
+    <EmbeddedResource Include="AppendixForm.resx">
+      <DependentUpon>AppendixForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationForms\WordSoupConfiguration.resx">
       <DependentUpon>WordSoupConfiguration.cs</DependentUpon>
     </EmbeddedResource>
