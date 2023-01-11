@@ -13,3 +13,4 @@
 - Alongside the changes to the design, a design doc will be created to document the project more thoroughly.
 - The next game I'm planning on implementing is a crossword puzzle.
 - I want to increase the amount of configurability when creating each game, adding more options like grid size or some sort of difficulty selector.
+- Since currently the basic windows forms' UI elements look a little ugly, I want to implenet a UI material design-style library to make the program's UI look better.
