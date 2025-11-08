@@ -1,29 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SudoSoup.Games;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SudoSoup
 {
     public abstract class GameBase : IDisposable
     {
+        #region Constants
+
+        const string SUDOKU = "Sudoku";
+        const string WORDSOUP = "Word Search";
+
+        #endregion
+
         public string gameTitle;
         public string[,] gameGrid;
+        public string[,] solutionGrid;
         public int randomSeed;
         protected Random random;
         protected EventManager eventMgr = EventManager.GetEventManager();
         public Form config;
 
-        protected GameBase()
+        public static GameBase CreateGame(string gameName)
         {
-            gameGrid = new string[9,9];
-        }
+            switch (gameName)
+            {
+                case SUDOKU:
+                    return new SudokuGame();
 
-        protected GameBase(int gridSize)
-        {
-            gameGrid = new string[gridSize, gridSize];
+                case WORDSOUP:
+                    return new WordSoupGame();
+
+                default:
+                    throw new ArgumentException($"Name of game {gameName} is not supported");
+            }
         }
 
         protected void InitializeRandomizer(int? seed)

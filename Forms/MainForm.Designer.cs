@@ -77,7 +77,7 @@
             this.SudokuBtn.TabIndex = 0;
             this.SudokuBtn.Text = "Sudoku";
             this.SudokuBtn.UseVisualStyleBackColor = true;
-            this.SudokuBtn.Click += new System.EventHandler(this.SudokuBtn_Click);
+            this.SudokuBtn.Click += new System.EventHandler(this.GameBtn_OnClick);
             // 
             // WordSearchBtn
             // 
@@ -90,7 +90,7 @@
             this.WordSearchBtn.TabIndex = 1;
             this.WordSearchBtn.Text = "Word Search";
             this.WordSearchBtn.UseVisualStyleBackColor = true;
-            this.WordSearchBtn.Click += new System.EventHandler(this.WordSearchBtn_Click);
+            this.WordSearchBtn.Click += new System.EventHandler(this.GameBtn_OnClick);
             // 
             // MainForm
             // 

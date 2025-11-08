@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using QuestPDF.Fluent;
@@ -33,13 +31,13 @@ namespace SudoSoup.Games
         }
 
         public string[] wordList;
-        public string[,] solutionGrid;
         private int previouslyClickedCell = -1;
         private List<string> missingWordsToFind;
 
         public WordSoupGame()
         {
             this.gameTitle = "Wordsoup";
+            this.gameGrid = new string[9, 9];
             this.solutionGrid = new string[9, 9];
             eventMgr.OnClickedWordsoupCell += UpdateWordsoupState;
             this.config = new WordSoupConfiguration();

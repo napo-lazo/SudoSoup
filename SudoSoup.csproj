@@ -82,10 +82,10 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppendixForm.cs">
+    <Compile Include="Forms\AppendixForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppendixForm.Designer.cs">
+    <Compile Include="Forms\AppendixForm.Designer.cs">
       <DependentUpon>AppendixForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationForms\WordSoupConfiguration.cs">
@@ -101,31 +101,31 @@
       <DependentUpon>WordsoupLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SudokuTextBox.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controllers\SudokuTextBox.Designer.cs">
       <DependentUpon>SudokuTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSource\SudokuDataSource.cs" />
-    <Compile Include="DataSource\WordsoupDataSource.cs" />
+    <Compile Include="PDFs\DataSource\SudokuDataSource.cs" />
+    <Compile Include="PDFs\DataSource\WordsoupDataSource.cs" />
     <Compile Include="EventManager.cs" />
-    <Compile Include="GameBase.cs" />
-    <Compile Include="GameForm.cs">
+    <Compile Include="Games\GameBase.cs" />
+    <Compile Include="Forms\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameForm.Designer.cs">
+    <Compile Include="Forms\GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Games\WordSoupGame.cs" />
     <Compile Include="IAppendix.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\SudokuModel.cs" />
-    <Compile Include="Models\WordsoupModel.cs" />
+    <Compile Include="PDFs\Models\SudokuModel.cs" />
+    <Compile Include="PDFs\Models\WordsoupModel.cs" />
     <Compile Include="PDFs\WordsoupPDF.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,7 +137,7 @@
     </Compile>
     <Compile Include="Games\SudokuGame.cs" />
     <Compile Include="PDFs\SudokuPDF.cs" />
-    <EmbeddedResource Include="AppendixForm.resx">
+    <EmbeddedResource Include="Forms\AppendixForm.resx">
       <DependentUpon>AppendixForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationForms\WordSoupConfiguration.resx">
@@ -149,10 +149,10 @@
     <EmbeddedResource Include="Controllers\WordsoupLabel.resx">
       <DependentUpon>WordsoupLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameForm.resx">
+    <EmbeddedResource Include="Forms\GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

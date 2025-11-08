@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuestPDF.Fluent;
 using SudoSoup.ConfigurationForms;
@@ -15,7 +12,6 @@ namespace SudoSoup.Games
 {
     public class SudokuGame : GameBase
     {
-        public string[,] solutionGrid;
         private int qtyToRemove = 51;
         private int filledCells = 0;
         private HashSet<int> invalidCellIndexes = new HashSet<int>();
@@ -23,6 +19,7 @@ namespace SudoSoup.Games
         public SudokuGame()
         {
             this.gameTitle = "Sudoku";
+            this.gameGrid = new string[9, 9];
             this.solutionGrid = new string[9, 9];
             eventMgr.OnFilledSudokuCell += UpdateSudokuState;
             this.config = new SudokuConfiguration();
